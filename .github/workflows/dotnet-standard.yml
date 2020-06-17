@@ -20,7 +20,7 @@ jobs:
       - name: Restore Deps
         run: dotnet restore UtilPTT/UtilPTT.sln
       - name: Build
-        run: dotnet build UtilPTT/UtilPTT.sln --configuration Release --no-restore --runtime osx-x64
+        run: dotnet build UtilPTT/UtilPTT.sln --configuration Release --no-restore
       - name: Test
         run: dotnet test UtilPTT/UtilPTT.sln --no-restore --verbosity normal
     
@@ -37,6 +37,6 @@ jobs:
     - name: Restore Deps
       run: dotnet restore UtilPTT/UtilPTT.sln
     - name: Build
-      run: dotnet build UtilPTT/UtilPTT.sln --configuration Release --no-restore --runtime ubuntu.18.04-x64
+      run: dotnet build UtilPTT/UtilPTT.sln --configuration Release --no-restore
     - name: Test
       run: dotnet test UtilPTT/UtilPTT.sln --no-restore --verbosity normal
