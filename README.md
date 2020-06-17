@@ -1,4 +1,3 @@
-# PeyangSuperLibrary
-よく使うものまとめたやつ(願望
-## License
-[NYSL](http://www.kmonos.net/nysl/) 0.9982に従います。
+<h1 align="center">UtilPTT</h1>
+
+<p align="center">A utilities often used by Potato1682.</p>
