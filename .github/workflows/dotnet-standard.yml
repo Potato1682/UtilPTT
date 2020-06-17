@@ -18,7 +18,7 @@ jobs:
         with:
           dotnet-version: 3.1.101
       - name: Restore Deps
-        run: dotnet restore
+        run: dotnet restore UtilPTT/UtilPTT.sln
       - name: Build
         run: dotnet build UtilPTT/UtilPTT.sln --configuration Release --no-restore --runtime osx-x64
       - name: Test
@@ -35,7 +35,7 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Restore Deps
-      run: dotnet restore
+      run: dotnet restore UtilPTT/UtilPTT.sln
     - name: Build
       run: dotnet build UtilPTT/UtilPTT.sln --configuration Release --no-restore --runtime ubuntu.18.04-x64
     - name: Test
