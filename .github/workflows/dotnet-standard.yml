@@ -7,21 +7,6 @@ on:
     branches: [ master ]
 
 jobs:
-  build-windows:
-    
-    runs-on: windows-laetst
-    
-    steps:
-      - uses: actions/checkout@v2
-      - name: Setup .NET Standard
-        uses: actions/setup-dotnet@v1.5.0
-        with:
-          dotnet-version: 3.1.101
-      - name: Build
-        run: dotnet build --configuration Release --no-restore
-      - name: Test
-        run: dotnet test --no-restore --verbosity normal
-    
   build-macos:
     
     runs-on: macos-latest
@@ -33,9 +18,9 @@ jobs:
         with:
           dotnet-version: 3.1.101
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build UtilPTT/UtilPTT.sln --configuration Release --no-restore --runtime osx-x64
       - name: Test
-        run: dotnet test --no-restore --verbosity normal
+        run: dotnet test UtilPTT/UtilPTT.sln --no-restore --verbosity normal
     
   build-ubuntu:
 
@@ -48,6 +33,6 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build UtilPTT/UtilPTT.sln --configuration Release --no-restore --runtime ubuntu.18.04-x64
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test UtilPTT/UtilPTT.sln --no-restore --verbosity normal
