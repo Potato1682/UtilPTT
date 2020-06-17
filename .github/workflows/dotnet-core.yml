@@ -1,0 +1,53 @@
+name: .NET Standard
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-windows:
+    
+    runs-on: windows-laetst
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET Standard
+        uses: actions/setup-dotnet@v1.5.0
+        with:
+          dotnet-version: 3.1.101
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+      - name: Test
+        run: dotnet test --no-restore --verbosity normal
+    
+  build-macos:
+    
+    runs-on: macos-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET Standard
+        uses: actions/setup-dotnet@v1.5.0
+        with:
+          dotnet-version: 3.1.101
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+      - name: Test
+        run: dotnet test --no-restore --verbosity normal
+    
+  build-ubuntu:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Standard
+      uses: actions/setup-dotnet@v1.5.0
+      with:
+        dotnet-version: 3.1.101
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+    - name: Test
+      run: dotnet test --no-restore --verbosity normal
