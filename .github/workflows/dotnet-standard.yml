@@ -12,15 +12,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
     - name: Setup .NET Standard
       uses: actions/setup-dotnet@v1.5.0
       with:
         dotnet-version: 3.1.101
+    - name: Cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
     - name: Restore Deps
       run: dotnet restore cs/src/UtilPTT.sln
     - name: Build
-      run: dotnet build cs/srcUtilPTT.sln --configuration Release --no-restore
+      run: dotnet build cs/src/UtilPTT.sln --configuration Release --no-restore
     - name: Test
       run: dotnet test cs/src/UtilPTT.sln --no-restore --verbosity normal
 
@@ -29,11 +37,19 @@ jobs:
     runs-on: macos-latest
     
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Setup .NET Standard
         uses: actions/setup-dotnet@v1.5.0
         with:
           dotnet-version: 3.1.101
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
       - name: Restore Deps
         run: dotnet restore cs/src/UtilPTT.sln
       - name: Build
