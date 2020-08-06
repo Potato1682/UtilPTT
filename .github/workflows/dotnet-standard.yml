@@ -7,6 +7,23 @@ on:
     branches: [ master ]
 
 jobs:
+  build-linux:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Standard
+      uses: actions/setup-dotnet@v1.5.0
+      with:
+        dotnet-version: 3.1.101
+    - name: Restore Deps
+      run: dotnet restore cs/src/UtilPTT.sln
+    - name: Build
+      run: dotnet build cs/srcUtilPTT.sln --configuration Release --no-restore
+    - name: Test
+      run: dotnet test cs/src/UtilPTT.sln --no-restore --verbosity normal
+
   build-macos:
     
     runs-on: macos-latest
@@ -18,25 +35,8 @@ jobs:
         with:
           dotnet-version: 3.1.101
       - name: Restore Deps
-        run: dotnet restore UtilPTT/UtilPTT.sln
+        run: dotnet restore cs/src/UtilPTT.sln
       - name: Build
-        run: dotnet build UtilPTT/UtilPTT.sln --configuration Release --no-restore
+        run: dotnet build cs/src/UtilPTT.sln --configuration Release --no-restore
       - name: Test
-        run: dotnet test UtilPTT/UtilPTT.sln --no-restore --verbosity normal
-    
-  build-ubuntu:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET Standard
-      uses: actions/setup-dotnet@v1.5.0
-      with:
-        dotnet-version: 3.1.101
-    - name: Restore Deps
-      run: dotnet restore UtilPTT/UtilPTT.sln
-    - name: Build
-      run: dotnet build UtilPTT/UtilPTT.sln --configuration Release --no-restore
-    - name: Test
-      run: dotnet test UtilPTT/UtilPTT.sln --no-restore --verbosity normal
+        run: dotnet test cs/src/UtilPTT.sln --no-restore --verbosity normal
